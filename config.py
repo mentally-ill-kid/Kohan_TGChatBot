@@ -1,0 +1,26 @@
+import os
+import logging
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Загрузка переменных окружения
+env_path = Path(__file__).resolve().parents[1] / ".env"
+load_dotenv(env_path)
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+HF_API_KEY = os.getenv("HF_API_KEY")
+
+MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-7B-Instruct")
+
+BOT_CREATOR = os.getenv("BOT_CREATOR", "Тимофей Т")  # Имя создателя бота
+BOT_NAME = os.getenv("BOT_NAME", "Хуесос")  # Имя бота
+BOT_RULES = os.getenv("BOT_RULES", "")  # Дополнительные правила (через ; для разделения)
+
+logger = logging.getLogger(__name__)
+
+# Проверка обязательных переменных при импорте
+if not BOT_TOKEN:
+    logger.warning("BOT_TOKEN не найден в переменных окружения!")
+
+if not HF_API_KEY:
+    logger.warning("HF_API_KEY не найден в переменных окружения!")
