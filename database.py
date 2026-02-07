@@ -15,7 +15,6 @@ async def init_db():
             content TEXT
         )
         """)
-        # Создаём индекс для быстрого поиска по user_id
         await db.execute("""
         CREATE INDEX IF NOT EXISTS idx_user_id ON messages(user_id)
         """)
@@ -32,7 +31,6 @@ async def save_message(user_id, role, content):
             await db.commit()
     except Exception as e:
         logger.error(f"Ошибка при сохранении сообщения: {e}")
-        # Не прерываем работу бота, просто логируем ошибку
 
 
 async def get_last_messages(user_id, limit=5):
@@ -47,5 +45,4 @@ async def get_last_messages(user_id, limit=5):
         return [{"role": r[0], "content": r[1]} for r in reversed(rows)]
     except Exception as e:
         logger.error(f"Ошибка при получении истории сообщений: {e}")
-        # Возвращаем пустой список, чтобы бот мог продолжить работу
         return []

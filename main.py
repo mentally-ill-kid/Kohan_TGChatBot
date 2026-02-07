@@ -5,7 +5,6 @@ from config import BOT_TOKEN
 from handlers import router
 from database import init_db
 
-# Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -14,7 +13,6 @@ logger = logging.getLogger(__name__)
 
 
 async def main():
-    # Проверка наличия токена
     if not BOT_TOKEN:
         logger.error("BOT_TOKEN не найден! Проверьте .env файл.")
         return
