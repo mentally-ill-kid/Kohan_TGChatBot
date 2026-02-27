@@ -1,0 +1,7 @@
+services:
+  bot:
+    image: chatbot:staging
+    restart: unless-stopped
+    environment:
+      BOT_TOKEN: "**ТОКЕН БОТА**"
+      HF_API_KEY: "**API КЛЮЧ**" 
