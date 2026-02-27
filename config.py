@@ -5,9 +5,8 @@ from pathlib import Path
 
 # Ищем .env файл в текущей директории или на уровень выше
 env_path = Path(__file__).parent / ".env"
-if not env_path.exists():
-    env_path = Path(__file__).resolve().parents[1] / ".env"
-load_dotenv(env_path)
+if env_path.exists():
+    load_dotenv(env_path)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 HF_API_KEY = os.getenv("HF_API_KEY")
